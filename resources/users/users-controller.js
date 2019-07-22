@@ -31,5 +31,29 @@ module.exports = {
           error: 'server error'
         });
     }
+  },
+
+  authenticate: async function(req, res) {
+    try {
+      const { username, password } = req.body;
+      const user = await usersModel.readByUsername(username);
+      if(user && bcrypt.compareSync(password, user.password)) {
+        req.session(user);
+        return res.status(200)
+          .json({
+            message: `Welcome ${user.first_name}, ${user.last_name}`
+          });
+      }
+      
+      res.status(400)
+        .json({
+          message: 'invalid credentials'
+        });
+    } catch(error) {
+      res.status(500)
+        .json({
+          error: 'server error'
+        });
+    }
   }
 };
