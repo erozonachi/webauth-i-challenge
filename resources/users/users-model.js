@@ -5,5 +5,9 @@ module.exports = {
     return db('users')
       .insert(user)
       .then(([ id ]) => this.readById(id));
-  }
+  },
+
+  read: function() {
+    return db('users');
+  },
 };
