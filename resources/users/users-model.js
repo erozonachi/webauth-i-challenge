@@ -8,7 +8,8 @@ module.exports = {
   },
 
   read: function() {
-    return db('users');
+    return db('users')
+    .select('id', 'first_name', 'last_name', 'username');
   },
 
   readById: function(id) {
