@@ -15,6 +15,12 @@ module.exports = {
     return db('users')
       .where({ id })
       .first();
+  },
+
+  readByUsername: function(username) {
+    return db('users')
+      .where({ username })
+      .first();
   }
-  
+
 };
