@@ -10,10 +10,7 @@ module.exports = {
       });
 
       res.status(201)
-        .json({
-          ...user,
-          password: null
-        });
+        .json(user);
     } catch(error) {
       res.status(500)
         .json({
