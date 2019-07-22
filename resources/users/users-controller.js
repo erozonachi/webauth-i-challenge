@@ -17,5 +17,19 @@ module.exports = {
           error: 'server error'
         });
     }
+  },
+
+  read: async function(req, res) {
+    try {
+      const users = await usersModel.read();
+
+      res.status(200)
+        .json(users);
+    } catch(error) {
+      res.status(500)
+        .json({
+          error: 'server error'
+        });
+    }
   }
 };
