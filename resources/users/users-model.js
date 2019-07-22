@@ -10,4 +10,11 @@ module.exports = {
   read: function() {
     return db('users');
   },
+
+  readById: function(id) {
+    return db('users')
+      .where({ id })
+      .first();
+  }
+  
 };
