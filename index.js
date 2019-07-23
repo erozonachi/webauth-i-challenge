@@ -3,6 +3,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const session = require('express-session');
 const routes = require('./resources/users/users-route');
+const auths = require('./helpers/auths');
 
 const server = express();
 const port = process.env.PORT || 5000;
@@ -22,6 +23,7 @@ server.use(helmet());
 server.use(express.json());
 server.use(cors());
 server.use(session(configOptions));
+server.use('/api/restricted/*', auths.authorize);
 server.use('/api', routes);
 
 server.listen(port, () => {

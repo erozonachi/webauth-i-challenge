@@ -8,5 +8,6 @@ const app = express.Router();
 app.post('/register', validator.validateUser, controller.create);
 app.post('/login', controller.authenticate);
 app.get('/users', auths.authorize, controller.read);
+app.get('/restricted/users', controller.read);
 
 module.exports = app;
